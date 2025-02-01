@@ -1,0 +1,16 @@
+{
+    "name": "a1_online_shopping_platform",
+    "version": "1.0.0",
+    "description": "Online Shopping Platform with MongoDB",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2",
+        "mongoose": "^6.13.6"
+    },
+    "author": "",
+    "license": "ISC",
+    "keywords": []
+}

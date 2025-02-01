@@ -1,0 +1,59 @@
+PS C:\Users\Shakeel Rifath\Projects\Assignments\A2_Sqlite3> sqlite3 db.sqlite3
+SQLite version 3.47.0 2024-10-21 16:30:22
+Enter ".help" for usage hints.
+sqlite> .read "C:\\Users\\Shakeel Rifath\\Projects\\Assignments\\A2_Sqlite3\\setup.sql"
+sqlite> .read "C:\\Users\\Shakeel Rifath\\Projects\\Assignments\\A2_Sqlite3\\queries.sql"
+
+
+
+output:-
+-----------------------
+Alice
+Charlie
+Finance|75000.0
+HR|75000.0
+IT|60000.0
+HR
+1|Alice|70000.0|2021-01-15|HR
+2|Bob|60000.0|2020-03-10|IT
+3|Charlie|80000.0|2022-05-20|HR
+4|Diana|75000.0|2019-07-25|Finance
+sqlite>
+
+
+
+Queries:
+Q1. Write a query to list the names of employees hired after January 1, 2021.
+SELECT Name
+FROM Employees
+WHERE HireDate > '2021-01-01';
+
+
+Q2. Write a query to calculate the average salary of employees in each department.
+SELECT D.DepartmentName, AVG(E.Salary) AS AverageSalary
+FROM Employees E
+JOIN Departments D ON E.DepartmentID = D.DepartmentID
+GROUP BY D.DepartmentName;
+
+
+Q3. Write a query to find the department name where the total salary is the highest.
+SELECT D.DepartmentName
+FROM Employees E
+JOIN Departments D ON E.DepartmentID = D.DepartmentID
+GROUP BY D.DepartmentName
+ORDER BY SUM(E.Salary) DESC
+LIMIT 1;
+
+
+Q4. Write a query to list all departments that currently have no employees assigned.
+SELECT D.DepartmentName
+FROM Departments D
+LEFT JOIN Employees E ON D.DepartmentID = E.DepartmentID
+WHERE E.EmployeeID IS NULL;
+
+
+Q5. Write a query to fetch all employee details along with their department names.
+SELECT E.EmployeeID, E.Name, E.Salary, E.HireDate, D.DepartmentName
+FROM Employees E
+JOIN Departments D ON E.DepartmentID = D.DepartmentID;
+
